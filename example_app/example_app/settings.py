@@ -18,7 +18,9 @@ env = environ.Env()
 environ.Env.read_env()
 
 # get current environment (development, production)
-environment = env("ENVIRONMENT")
+environment = os.getenv("ENVIRONMENT")
+if (environment == None):
+    environment = 'development'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -28,12 +30,20 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG")
+if (environment == None):
+    DEBUG = False
 
-ALLOWED_HOSTS = []
+allowed_hosts_arr = []
+if (environment == 'production'):
+    allowed_hosts_arr = [os.getenv("ALLOWED_HOSTS")]
+else:
+    allowed_hosts_arr = ['127.0.0.1']
+
+ALLOWED_HOSTS = allowed_hosts_arr
 
 
 # Application definition
@@ -77,15 +87,27 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'example_app.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
+database_settings = {}
+if(environment == 'production'):
+    database_settings = {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.getenv("DATABASE_NAME"),
+        'USER': os.getenv("DATABASE_USER"),
+        'PASSWORD': os.getenv("DATABASE_PASS"),
+        'HOST': os.getenv("DATABASE_HOST"),
+        'PORT': os.getenv("DATABASE_PORT"),
+    }
+else:
+    database_settings = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+
+DATABASES = {
+    'default': database_settings
 }
 
 
