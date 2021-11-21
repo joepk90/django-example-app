@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 django = "==2.1"
 mysqlclient = "*"
+django-environ = "*"
 
 [dev-packages]
 autopep8 = "*"
