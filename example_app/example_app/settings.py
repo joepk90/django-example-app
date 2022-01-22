@@ -50,11 +50,11 @@ DEBUG = os.getenv("DEBUG")
 if (environment == None):
     DEBUG = False
 
-allowed_hosts_arr = []
-if (environment == 'production'):
-    allowed_hosts_arr = [os.getenv("ALLOWED_HOSTS")]
-else:
-    allowed_hosts_arr = ['127.0.0.1']
+allowed_hosts_arr = ['*']
+# if (environment == 'production'):
+#     allowed_hosts_arr = [os.getenv("ALLOWED_HOSTS")]
+# else:
+#     allowed_hosts_arr = ['127.0.0.1']
 
 ALLOWED_HOSTS = allowed_hosts_arr
 
