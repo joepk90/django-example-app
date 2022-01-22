@@ -17,23 +17,16 @@ import environ
 # initialise environment variables
 env = environ.Env()
 
-# TODO simplify environment variable setup
+# read dev .env file (file must be included in the same directory as this settings.py file)
+env.read_env()
 
-# APPLICATION_SETTINGS = GCP Application Settings
-if (os.environ.get("APPLICATION_SETTINGS", None) != None):
-
-    # get production environment variables
-    env.read_env(io.StringIO(os.environ.get("APPLICATION_SETTINGS", None)))
-else:
-
-    # get development (.env) environment variables
-    environ.Env.read_env()
+if (os.environ.get("APPLICATION_SETTINGS") != None):
+    env.read_env(io.StringIO(
+        os.environ.get("APPLICATION_SETTINGS", None)))
 
 
 # get current environment (development, production)
-environment = os.getenv("ENVIRONMENT")
-if (environment == None):
-    environment = 'development'
+environment = env("ENVIRONMENT")
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -43,16 +36,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG")
-if (environment == None):
-    DEBUG = False
+DEBUG = True
+# DEBUG = env("DEBUG")
+# if (environment == None):
+#     DEBUG = True
 
 allowed_hosts_arr = ['*']
 # if (environment == 'production'):
-#     allowed_hosts_arr = [os.getenv("ALLOWED_HOSTS")]
+#     allowed_hosts_arr = [env("ALLOWED_HOSTS")]
 # else:
 #     allowed_hosts_arr = ['127.0.0.1']
 
@@ -107,11 +101,11 @@ database_settings = {}
 if(environment == 'production'):
     database_settings = {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv("DATABASE_NAME"),
-        'USER': os.getenv("DATABASE_USER"),
-        'PASSWORD': os.getenv("DATABASE_PASS"),
-        'HOST': os.getenv("DATABASE_HOST"),
-        'PORT': os.getenv("DATABASE_PORT"),
+        'NAME': env("DATABASE_NAME"),
+        'USER': env("DATABASE_USER"),
+        'PASSWORD': env("DATABASE_PASS"),
+        'HOST': env("DATABASE_HOST"),
+        'PORT': env("DATABASE_PORT"),
     }
 else:
     database_settings = {
