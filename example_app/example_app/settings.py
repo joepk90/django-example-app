@@ -11,11 +11,24 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import io
 import environ
 
 # initialise environment variables
 env = environ.Env()
-environ.Env.read_env()
+
+# TODO simplify environment variable setup
+
+# APPLICATION_SETTINGS = GCP Application Settings
+if (os.environ.get("APPLICATION_SETTINGS", None) != None):
+
+    # get production environment variables
+    env.read_env(io.StringIO(os.environ.get("APPLICATION_SETTINGS", None)))
+else:
+
+    # get development (.env) environment variables
+    environ.Env.read_env()
+
 
 # get current environment (development, production)
 environment = os.getenv("ENVIRONMENT")
