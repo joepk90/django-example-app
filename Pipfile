@@ -9,6 +9,7 @@ mysqlclient = "*"
 django-environ = "*"
 gunicorn = "*"
 djangorestframework = "*"
+drf-react-template-framework = "*"
 
 [dev-packages]
 autopep8 = "*"
