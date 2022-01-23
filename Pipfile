@@ -8,6 +8,7 @@ django = "==4"
 mysqlclient = "*"
 django-environ = "*"
 gunicorn = "*"
+djangorestframework = "*"
 
 [dev-packages]
 autopep8 = "*"
