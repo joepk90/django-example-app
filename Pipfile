@@ -10,6 +10,7 @@ django-environ = "*"
 gunicorn = "*"
 djangorestframework = "*"
 drf-react-template-framework = "*"
+autopep8 = "*"
 
 [dev-packages]
 autopep8 = "*"
