@@ -25,8 +25,10 @@ if (os.environ.get("APPLICATION_SETTINGS") != None):
         os.environ.get("APPLICATION_SETTINGS", None)))
 
 
-# get current environment (development, production)
-environment = env("ENVIRONMENT")
+# default = development (unless the environment varaible is set)
+environment = 'development'
+if "ENVIRONMENT" in os.environ:
+    environment = env("ENVIRONMENT")
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
