@@ -8,9 +8,6 @@ COPY . /example_app
 
 WORKDIR /example_app
 
-# TODO use dockerignore file!
-RUN rm ./example_app/.env
-
 ENV PORT 8080
 
 CMD gunicorn --bind :$PORT example_app.wsgi:application
