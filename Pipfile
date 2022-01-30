@@ -11,6 +11,7 @@ gunicorn = "*"
 djangorestframework = "*"
 drf-react-template-framework = "*"
 autopep8 = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 autopep8 = "*"
