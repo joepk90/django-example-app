@@ -15,8 +15,11 @@ example_app/*/*/*/__pycache__/
 venv/
 .env
 .env*
-example_app/*/.env
-example_app/*/.env*
+example_app/.env
+example_app/.env*
 
 # Local PostgreSQL data
 data/
+
+# Databases
+db.sqlite3
