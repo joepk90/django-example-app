@@ -15,8 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.debug import default_urlconf
+
+# enable developement page
+# https://stackoverflow.com/questions/55110493/how-to-retain-the-development-page
+# https://stackoverflow.com/questions/14951468/who-generates-the-default-page-of-django-welcome-page
 
 urlpatterns = [
+    path('', default_urlconf),
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls')),
 ]
