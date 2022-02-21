@@ -12,6 +12,8 @@ djangorestframework = "*"
 drf-react-template-framework = "*"
 autopep8 = "*"
 django-cors-headers = "*"
+djangorestframework-simplejwt = "*"
+djoser = "*"
 
 [dev-packages]
 autopep8 = "*"
