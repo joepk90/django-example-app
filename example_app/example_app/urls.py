@@ -25,4 +25,6 @@ urlpatterns = [
     path('', default_urlconf),
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls')),
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.jwt')),
 ]
