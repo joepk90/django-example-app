@@ -1,3 +1,12 @@
-from django.shortcuts import render
+from djoser.views import UserViewSet
 
-# Create your views here.
+
+class CustomDjsoserUserViewSet(UserViewSet):
+    http_method_names = [
+        'get',
+        # 'post', # disabled to prevent new user regisrations
+        'patch',
+        'delete',
+        'head',
+        'options',
+    ]
