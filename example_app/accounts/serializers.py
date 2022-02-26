@@ -22,3 +22,11 @@ class UserSerializer(BaseUserSerializer):
             'first_name',
             'last_name',
         ]
+
+
+class UserAuthenticateSerializer(BaseUserSerializer):
+    class Meta(BaseUserSerializer.Meta):
+        fields = [
+            'email',
+            'password',
+        ]
