@@ -1,5 +1,6 @@
 from rest_framework.mixins import RetrieveModelMixin, CreateModelMixin, UpdateModelMixin
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.permissions import AllowAny
 from drf_react_template.mixins import FormSchemaViewSetMixin
 from . models import Post
 from . serializers import PostSerializer
@@ -44,6 +45,7 @@ class PostFormViewSet(CreateModelMixin,
 
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+    permission_classes = [AllowAny, LimitRecords]
 
     # class Meta:
     #     model = Post
@@ -57,7 +59,7 @@ class PostViewSet(ModelViewSet):
 
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    permission_classes = [LimitRecords]
+    permission_classes = [AllowAny, LimitRecords]
 
     class Meta:
         model = Post
