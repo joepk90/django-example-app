@@ -21,10 +21,12 @@ from django.views.debug import default_urlconf
 # https://stackoverflow.com/questions/55110493/how-to-retain-the-development-page
 # https://stackoverflow.com/questions/14951468/who-generates-the-default-page-of-django-welcome-page
 
+# TODO: enable djoser auth endpoints if authenticated as super user
+
 urlpatterns = [
     path('', default_urlconf),
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls')),
-    path('auth/', include('djoser.urls')),
+    # path('auth/', include('djoser.urls')), # disabled to prevent registrations
     path('auth/', include('djoser.urls.jwt')),
 ]
