@@ -27,3 +27,7 @@ urlpatterns = [
     path('blog/', include('blog.urls')),
     path('auth/', include('accounts.urls')),  # djoser urls
 ]
+
+# default djoser urls (add to interact with live db)
+# path('auth/', include('djoser.urls')),
+# path('auth/', include('djoser.urls.jwt')),
