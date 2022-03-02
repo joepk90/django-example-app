@@ -23,9 +23,11 @@ class UserSerializer(BaseUserSerializer):
             'last_name',
         ]
 
+# TODO there might be a more appropriate serializer to use in the jwt code
 
-class UserAuthenticateSerializer(BaseUserSerializer):
-    class Meta(BaseUserSerializer.Meta):
+
+class UserAuthenticateSerializer(UserCreateSerializer):
+    class Meta(UserCreateSerializer.Meta):
         fields = [
             'email',
             'password',
