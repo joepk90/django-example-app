@@ -33,14 +33,15 @@ env:
  
 jobs:
 
-  test:
-    name: Test Workflow (Reusable)
-    uses: "joepk90/django-example-app/.github/workflows/0-reusable-test.yaml@master"
-    secrets: inherit
+  first:
+    name: first
+    steps:
+      - name: First Step
+        run: echo "running"
 
   publish:
     name: Pubish
-    needs: test
+    # needs: test
     runs-on: ubuntu-22.04
 
     steps:
